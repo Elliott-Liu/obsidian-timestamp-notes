@@ -6,3 +6,8 @@ export interface CodeBlockProperties {
 	};
 	legacyMode: boolean;
 }
+
+export function parseTimestamp(source: string) {
+	const properties = getCodeBlockProperties(source);
+	return properties;
+}
