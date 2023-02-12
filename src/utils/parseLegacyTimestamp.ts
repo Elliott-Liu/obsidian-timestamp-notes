@@ -25,3 +25,14 @@ export function parseLegacyTimestamp(source: string) {
 	return properties;
 }
 
+export function parseLegacyTimestampUrl(source: string) {
+	const properties: CodeBlockProperties = {
+		properties: {},
+		legacyMode: true,
+	};
+
+	const url: URL = new URL(source.trim());
+
+	properties.properties = { url: url };
+	return properties;
+}
