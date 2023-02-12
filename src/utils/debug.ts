@@ -6,4 +6,6 @@ export function logError(context: string, error: Error) {
 
 export function notifyError(context: string, error?: Error) {
 	new Notice(`Streaming Error\n${context}`);
+
+	console.error(context, error);
 }
