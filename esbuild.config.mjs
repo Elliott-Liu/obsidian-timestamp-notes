@@ -56,6 +56,6 @@ const context = await esbuild
 // Enable watch mode
 if (!production) {
 	await context.watch();
+} else {
+	context.dispose();
 }
-
-context.dispose();
