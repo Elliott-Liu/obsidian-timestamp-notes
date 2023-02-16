@@ -8,7 +8,7 @@ if you want to view the source, please visit the github repository of this plugi
 */
 `;
 
-const prod = process.argv[2] === "production";
+const production = process.argv.indexOf("production") >= 0;
 
 // Create a context for incremental builds
 const context = await esbuild
@@ -47,11 +47,15 @@ const context = await esbuild
 		format: "cjs",
 		target: "es2016",
 		logLevel: "info",
-		sourcemap: prod ? false : "inline",
+		sourcemap: production ? false : "inline",
 		treeShaking: true,
 		outfile: "main.js",
 	})
 	.catch(() => process.exit(1));
 
 // Enable watch mode
-await context.watch(!prod);
+if (!production) {
+	await context.watch();
+}
+
+context.dispose();
